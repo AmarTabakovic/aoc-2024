@@ -1,10 +1,13 @@
 #ifndef UTIL_HPP
 #define UTIL_HPP
 
+// Commonly used headers
 #include <algorithm>
 #include <cmath>
 #include <fstream>
+#include <functional>
 #include <iostream>
+#include <limits>
 #include <map>
 #include <optional>
 #include <set>
