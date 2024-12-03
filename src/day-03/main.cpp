@@ -2,16 +2,15 @@
 
 int Part1(const std::vector<std::string> &input)
 {
-  int sum = 0;
-
-  std::regex regex{R"(mul\([0-9]{1,4},[0-9]{1,4}\))"};
+  const std::regex regex{R"(mul\([0-9]{1,4},[0-9]{1,4}\))"};
+  int sum{0};
 
   for (const auto &line : input) {
-    for (auto it = std::sregex_iterator(line.begin(), line.end(), regex);
+    for (auto it = std::sregex_iterator{line.begin(), line.end(), regex};
          it != std::sregex_iterator{};
          it++) {
       int a{0}, b{0};
-      std::sscanf((*it).str().data(), "mul(%d,%d)", &a, &b);
+      std::sscanf(it->str().data(), "mul(%d,%d)", &a, &b);
       sum += a * b;
     }
   }
@@ -19,24 +18,23 @@ int Part1(const std::vector<std::string> &input)
 }
 
 int Part2(const std::vector<std::string> &input) {
-  int sum = 0;
-
-  std::regex regex{R"((mul\([0-9]{1,4},[0-9]{1,4}\))|(do\(\))|(don't\(\)))"};
+  const std::regex regex{R"((mul\([0-9]{1,4},[0-9]{1,4}\))|(do\(\))|(don't\(\)))"};
   bool mul_enabled{true};
+  int sum{0};
 
   for (const auto &line : input) {
-    for (auto it = std::sregex_iterator(line.begin(), line.end(), regex);
+    for (auto it = std::sregex_iterator{line.begin(), line.end(), regex};
          it != std::sregex_iterator{};
          it++) {
-      auto s = (*it).str();
-      if (s == "don't()") {
+      auto str{it->str()};
+      if (str == "don't()") {
         mul_enabled = false;
-      } else if (s == "do()") {
+      } else if (str == "do()") {
         mul_enabled = true;
       } else {
         if (mul_enabled) {
           int a{0}, b{0};
-          std::sscanf(s.data(), "mul(%d,%d)", &a, &b);
+          std::sscanf(str.data(), "mul(%d,%d)", &a, &b);
           sum += a * b;
         }
       }
