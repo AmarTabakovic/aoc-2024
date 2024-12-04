@@ -12,10 +12,13 @@
 #include <limits>
 #include <map>
 #include <optional>
+#include <queue>
 #include <regex>
 #include <set>
 #include <sstream>
+#include <stack>
 #include <string>
+#include <tuple>
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
