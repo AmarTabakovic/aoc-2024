@@ -10,14 +10,14 @@ int SearchPart1(const std::vector<std::string> &grid,
 {
   const std::string xmas{"XMAS"};
 
-  auto check = [&](int dir_vert, int dir_hor) {
-    bool ok = true;
+  const auto check = [&](int dir_vert, int dir_hor) {
+    bool ok{true};
 
     for (int i = 1; i <= 3; i++) {
-      int row = coord.first + i * dir_vert;
-      int col = coord.second + i * dir_hor;
+      const int row{coord.first + i * dir_vert};
+      const int col{coord.second + i * dir_hor};
 
-      auto is_inside_bounds = row < num_rows || col >= 0 || col < num_cols || col >= 0;
+      const auto is_inside_bounds{row < num_rows || col >= 0 || col < num_cols || col >= 0};
 
       if (!is_inside_bounds || grid[row][col] != xmas[i]) {
         ok = false;
@@ -46,8 +46,9 @@ int SearchPart2(const std::vector<std::string> &grid,
 {
   int count{0};
 
-  auto row{coord.first}, col{coord.second};
-  auto is_inside_bounds = row + 1 < num_rows || col - 1 >= 0 || col + 1 < num_cols || col - 1 >= 0;
+  const auto row{coord.first}, col{coord.second};
+  const auto is_inside_bounds{row + 1 < num_rows || col - 1 >= 0 || col + 1 < num_cols
+                              || col - 1 >= 0};
 
   if (is_inside_bounds) {
     int mas_count{0};
