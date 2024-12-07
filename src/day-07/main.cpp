@@ -5,7 +5,7 @@ using NumType = unsigned long long;
 
 void Recurse(NumType lhs,
              NumType aux,
-             std::vector<NumType> &nums,
+             const std::vector<NumType> &nums,
              int index,
              std::unordered_set<NumType> &solutions,
              bool is_part2)
