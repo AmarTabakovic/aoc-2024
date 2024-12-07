@@ -55,7 +55,6 @@ int Part1(const std::vector<std::string> &input)
     }
     // Collision check
     if (input[next_pos.first][next_pos.second] == '#') {
-      // Le evil cast + modulo + cast
       current_dir = NextDirection(current_dir);
     } else {
       current_pos = next_pos;
