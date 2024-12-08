@@ -30,10 +30,6 @@ int Solve(const std::vector<std::string> &input, bool is_part2)
         const auto &antenna1{antennas[i]};
         const auto &antenna2{antennas[j]};
 
-        if (antenna1 == antenna2) {
-          continue;
-        }
-
         const auto dist_row{antenna2.first - antenna1.first};
         const auto dist_col{antenna2.second - antenna1.second};
 
