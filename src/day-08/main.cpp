@@ -35,17 +35,17 @@ int Solve(const std::vector<std::string> &input, bool is_part2)
 
         if (is_part2) {
           // Traverse both sides
-          for (int i = -1; i <= 1; i += 2) {
-            auto curr_antinode{Coordinate{antenna1.first, antenna1.second}};
+          for (int k = -1; k <= 1; k += 2) {
+            Coordinate curr_antinode{antenna1.first, antenna1.second};
             while (InBounds(curr_antinode, num_rows, num_cols)) {
               antinodes.insert(curr_antinode);
-              curr_antinode.first += i * dist_row;
-              curr_antinode.second += i * dist_col;
+              curr_antinode.first += k * dist_row;
+              curr_antinode.second += k * dist_col;
             }
           }
         } else {
-          const auto antinode1{Coordinate{antenna2.first + dist_row, antenna2.second + dist_col}};
-          const auto antinode2{Coordinate{antenna1.first - dist_row, antenna1.second - dist_col}};
+          const Coordinate antinode1{antenna2.first + dist_row, antenna2.second + dist_col};
+          const Coordinate antinode2{antenna1.first - dist_row, antenna1.second - dist_col};
 
           if (InBounds(antinode1, num_rows, num_cols)) {
             antinodes.insert(antinode1);
