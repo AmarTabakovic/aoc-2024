@@ -8,10 +8,10 @@ int CharToInt(char c)
 using NumType = long long;
 constexpr NumType kEmpty{-1};
 
-std::vector<NumType> Decompress(const std::string &disk_map)
+std::vector<int> Decompress(const std::string &disk_map)
 {
   bool is_disk{true};
-  std::vector<NumType> decompressed{};
+  std::vector<int> decompressed{};
   int disk_index{0};
   for (auto disk : disk_map) {
     auto size{CharToInt(disk)};
@@ -30,7 +30,7 @@ std::vector<NumType> Decompress(const std::string &disk_map)
   return decompressed;
 }
 
-NumType ComputeChecksum(const std::vector<NumType> &decompressed)
+NumType ComputeChecksum(const std::vector<int> &decompressed)
 {
   NumType checksum{0};
 
@@ -72,7 +72,7 @@ NumType Part2(const std::vector<std::string> &input)
   auto decompressed = Decompress(input[0]);
   auto right{static_cast<int>(decompressed.size()) - 1};
 
-  std::unordered_set<NumType> checked;
+  std::unordered_set<int> checked;
 
   while (right >= 0) {
     if (decompressed[right] == -1 || checked.contains(decompressed[right])) {
