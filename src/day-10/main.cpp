@@ -3,11 +3,11 @@
 // (row, col)
 using Coordinate = std::pair<int, int>;
 
-int Dfs(const std::vector<std::string> &input,
-        Coordinate starting_pos,
-        int num_rows,
-        int num_cols,
-        bool is_part2)
+int Search(const std::vector<std::string> &input,
+           Coordinate starting_pos,
+           int num_rows,
+           int num_cols,
+           bool is_part2)
 {
   std::stack<Coordinate> to_visit{};
   to_visit.push(starting_pos);
@@ -19,7 +19,7 @@ int Dfs(const std::vector<std::string> &input,
     auto curr_pos{to_visit.top()};
     to_visit.pop();
 
-    auto row{curr_pos.first}, col{curr_pos.second};
+    const auto row{curr_pos.first}, col{curr_pos.second};
 
     if (input[row][col] == '9') {
       if (is_part2) {
@@ -29,6 +29,9 @@ int Dfs(const std::vector<std::string> &input,
       }
       continue;
     }
+
+    // Height samples are between 0 to 9, so we can simply subtract both ASCII characters
+    // and still obtain the actual difference
 
     // Bottom
     if (row + 1 < num_rows && input[row + 1][col] - input[row][col] == 1) {
@@ -56,15 +59,15 @@ int Dfs(const std::vector<std::string> &input,
 
 int Solve(const std::vector<std::string> &input, bool is_part2)
 {
-  auto num_rows{input.size()};
-  auto num_cols{input[0].size()};
+  const auto num_rows{input.size()};
+  const auto num_cols{input[0].size()};
 
   int sum{0};
 
   for (int i = 0; i < num_rows; i++) {
     for (int j = 0; j < num_cols; j++) {
       if (input[i][j] == '0') {
-        sum += Dfs(input, {i, j}, num_rows, num_cols, is_part2);
+        sum += Search(input, {i, j}, num_rows, num_cols, is_part2);
       }
     }
   }
