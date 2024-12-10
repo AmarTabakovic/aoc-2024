@@ -9,7 +9,7 @@ int Dfs(const std::vector<std::string> &input,
         int num_cols,
         bool is_part2)
 {
-  std::stack<Coordinate> to_visit;
+  std::stack<Coordinate> to_visit{};
   to_visit.push(starting_pos);
 
   std::set<Coordinate> visited_peaks{};
