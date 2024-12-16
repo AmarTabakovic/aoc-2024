@@ -3,8 +3,7 @@
 // (row, column)
 using Coordinate = std::pair<int, int>;
 
-// Clockwise (matters!)
-enum class Direction { kUp = 0, kRight, kDown, kLeft };
+enum class Direction { kUp, kRight, kDown, kLeft };
 
 Coordinate NextCoordinate(const Coordinate &coord, Direction dir)
 {
@@ -22,8 +21,16 @@ Coordinate NextCoordinate(const Coordinate &coord, Direction dir)
 
 Direction NextDirection(Direction dir)
 {
-  // The evil cast + modulo + cast!
-  return static_cast<Direction>((static_cast<int>(dir) + 1) % 4);
+  switch (dir) {
+  case Direction::kUp:
+    return Direction::kRight;
+  case Direction::kRight:
+    return Direction::kDown;
+  case Direction::kDown:
+    return Direction::kLeft;
+  case Direction::kLeft:
+    return Direction::kUp;
+  }
 }
 
 int Part1(const std::vector<std::string> &input)
